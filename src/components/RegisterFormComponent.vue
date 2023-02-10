@@ -25,12 +25,15 @@
                         <v-col cols="12">
                             <v-text-field 
                                 label="Email*" 
-                                placeholder="johndoe@gmail.com" 
+                                placeholder="johndoe@gmail.com"
+                                prepend-inner-icon="mdi-email-outline" 
                                 hint="Enter your email address"
                                 clearable 
                                 required
                                 :readonly="loading"
                                 :rules="[rules.required, rules.email]"
+                                :error-messages="emailErrors"
+                                @input="clearError"
                                 v-model="email">
                             </v-text-field>
                         </v-col>
@@ -39,6 +42,7 @@
                         <v-col cols="12">
                             <v-text-field  
                                 label="Password*"
+                                prepend-inner-icon="mdi-lock"
                                 required 
                                 v-model="password"
                                 :readonly="loading"
@@ -56,6 +60,7 @@
                         <v-col cols="12">
                             <v-text-field  
                                 label="Repeat Password*" 
+                                prepend-inner-icon="mdi-lock"
                                 required
                                 v-model="repeatPassword"
                                 :readonly="loading"
@@ -100,6 +105,8 @@
 </template>
 
 <script>
+import axios from '@/config/axios';
+
 export default {
     data: () => ({
         dialog: false,
@@ -110,6 +117,7 @@ export default {
         email: '',
         password: '',
         repeatPassword: '',
+        emailErrors: [],
         rules:{
             required: value => !!value || 'Required.',
             email: value => {
@@ -127,24 +135,29 @@ export default {
         openLoginDialog(){
             this.$emit("toLogin");
         },
-        validate(){
-            this.$refs.form.validate()
+        clearError(){
+            this.emailErrors = []
         },
-        submit(){
-            // validation condition
-            // if(!this.form) return
+        async submit(){
+            await axios({
+                method: 'post',
+                url: 'user/register',
+                data: {
+                    email: this.email,
+                    password: this.password
+                }
+            })
+            .then(response => {
+                this.loading = true
+                setTimeout(() => (this.loading = false), 2000)
 
-            // logic for saving user ->
-
-            // data packing to json
-            // const json = JSON.stringify({
-            //     email: this.email,
-            //     password: this.password
-            // })
-
-            // loader
-            this.loading = true
-            setTimeout(() => (this.loading = false), 2000)
+                console.log(response)
+            })
+            .catch(error => {
+                if (error.response.status === 409) {
+                    this.emailErrors.push('This email is already in use')
+                }
+            });
         }
     }
 }
