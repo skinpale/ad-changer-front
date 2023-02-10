@@ -7,7 +7,6 @@
 import JumbotronComponent from '@/components/JumbotronComponent.vue';
 
 export default {
-    name: "HomeView",
     components: { JumbotronComponent }
 }
 </script>
