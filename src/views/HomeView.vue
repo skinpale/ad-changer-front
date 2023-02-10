@@ -1,12 +1,12 @@
 <template>
     <div>
-        <JumbotronComponent/>
+        <JumbotronComponent />
     </div>
 </template>
 <script>
 import JumbotronComponent from '@/components/JumbotronComponent.vue';
 
-export default{
+export default {
     name: "HomeView",
     components: { JumbotronComponent }
 }
