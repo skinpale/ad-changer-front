@@ -87,6 +87,7 @@
 
 <script>
 import axios from '@/config/axios';
+import { mapMutations } from 'vuex';
 
 export default {
     data: () => ({
@@ -109,6 +110,7 @@ export default {
         }
     }),
     methods: {
+        ...mapMutations(['login', 'logout']),
         closeDialog() {
             this.$emit("close");
         },
@@ -132,7 +134,8 @@ export default {
                 this.loading = true
                 setTimeout(() => (this.loading = false), 2000)
 
-                console.log(response)
+                console.log(response.data.email)
+                this.login(response.data)
             })
             .catch(error => {
                 if (error.response.status === 401) {
