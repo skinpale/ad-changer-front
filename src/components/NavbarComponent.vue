@@ -11,9 +11,11 @@
                     <span class="gradient-underline">Advertisement Exchanger</span>
                 </v-btn>
             </v-toolbar-title>
+
             <v-spacer></v-spacer>
 
-            <div>
+            <!-- User is authorized  -->
+            <div v-if="isAuthenticated">
                 <!-- Profile button -->
                 <router-link style="text-decoration: none;" to="/profile">
                     <v-btn small text>
@@ -33,36 +35,54 @@
                     <v-btn small text>
                         <v-icon class="pr-1" small>mdi-currency-usd</v-icon>pays</v-btn>
                 </router-link>
+                    
+                <!-- Divider -->
+                <span class="mx-3">|</span>
+
+                <!-- Logout -->
+                <v-btn small text @click="onLogout">
+                    <v-icon class="pr-1" small>mdi-logout</v-icon>
+                    logout
+                </v-btn>
             </div>
 
-            <!-- Divider -->
-            <span class="mx-3">|</span>
+            <!-- User is NOT authorized -->
+            <div v-else>
+                <!-- Login Dialog Form -->
+                <v-dialog dark v-model="loginDialog" scrollable>
+                    <template v-slot:activator="{ on, props }">
+                        <v-btn small text v-on="on" v-bind="props">
+                            <!-- <v-icon class="pr-1" small>mdi-login</v-icon> -->
+                            login
+                        </v-btn>
+                    </template>
+                    <LoginFormComponent 
+                        @close="
+                            loginDialog = false" 
+                        @toRegister="
+                            loginDialog = false, 
+                            registerDialog = true" />
+                </v-dialog>
 
-            <!-- Login Dialog Form -->
-            <v-dialog dark v-model="loginDialog" scrollable>
-                <LoginFormComponent 
-                    @close="
-                        loginDialog = false" 
-                    @toRegister="
-                        loginDialog = false, 
-                        registerDialog = true" />
-            </v-dialog>
-
-            <!-- Register Dialog Form -->
-            <v-dialog dark v-model="registerDialog" scrollable>
-                <template v-slot:activator="{ on, props }">
-                    <v-btn small text v-on="on" v-bind="props">
-                        <v-icon class="pr-1" small>mdi-login</v-icon>
-                        signup
-                    </v-btn>
-                </template>
-                <RegisterFormComponent 
-                    @close="
-                        registerDialog = false" 
-                    @toLogin="
-                        loginDialog = true, 
-                        registerDialog = false" />
-            </v-dialog>
+                <!-- Divider -->
+                <span class="mx-3">|</span>
+                
+                <!-- Register Dialog Form -->
+                <v-dialog dark v-model="registerDialog" scrollable>
+                    <template v-slot:activator="{ on, props }">
+                        <v-btn small text v-on="on" v-bind="props">
+                            <!-- <v-icon class="pr-1" small>mdi-login</v-icon> -->
+                            signup
+                        </v-btn>
+                    </template>
+                    <RegisterFormComponent 
+                        @close="
+                            registerDialog = false" 
+                        @toLogin="
+                            loginDialog = true, 
+                            registerDialog = false" />
+                </v-dialog>
+            </div>
         </v-toolbar>
     </nav>
 </template>
@@ -70,6 +90,7 @@
 <script>
 import LoginFormComponent from './LoginFormComponent.vue';
 import RegisterFormComponent from './RegisterFormComponent.vue';
+import { mapGetters,mapActions } from 'vuex';
 
 export default {
     components: { LoginFormComponent, RegisterFormComponent },
@@ -77,7 +98,17 @@ export default {
         props: '',
         loginDialog: false,
         registerDialog: false
-    })
+    }),
+    computed:{
+        ...mapGetters(['isAuthenticated'])
+    },
+    // to rework
+    methods:{
+        ...mapActions(['logout']),
+        onLogout(){
+            this.logout(this.$route.path)
+        }
+    }
 }
 </script>
 

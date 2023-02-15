@@ -9,13 +9,13 @@
                 <v-spacer></v-spacer>
 
                 <!-- Open Register dialog -->
-                <v-btn 
+                <!-- <v-btn 
                     class="ma=0 pa=0" 
                     small
                     outlined  
                     @click="openRegisterDialog">
                     Don't have an account?
-                </v-btn>
+                </v-btn> -->
             </v-card-title>
 
             <v-card-text>
@@ -110,7 +110,7 @@ export default {
         }
     }),
     methods: {
-        ...mapMutations(['login', 'logout']),
+        ...mapMutations(['login']),
         closeDialog() {
             this.$emit("close");
         },
@@ -131,11 +131,8 @@ export default {
                 }
             })
             .then(response => {
-                this.loading = true
-                setTimeout(() => (this.loading = false), 2000)
-
-                console.log(response.data.email)
                 this.login(response.data)
+                this.closeDialog()
             })
             .catch(error => {
                 if (error.response.status === 401) {

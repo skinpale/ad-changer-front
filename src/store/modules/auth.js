@@ -1,6 +1,14 @@
+import router from "@/config/router";
+
 export default {
     state: {
         user: JSON.parse(localStorage.getItem('user')) || null,
+    },
+    actions: {
+        logout(context, url){
+            context.commit("logout")
+            if(url !== '/') router.push('/')
+        }
     },
     mutations: {
         login(state, user) {
@@ -13,7 +21,11 @@ export default {
         },
     },
     getters: {
-        user: state => state.user,
-        isAuthenticated: state => state.user !== null,
+        user(state){
+            return state.user
+        },
+        isAuthenticated(state) {
+            return state.user !== null
+        }
     },
 }

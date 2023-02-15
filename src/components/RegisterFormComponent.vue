@@ -9,13 +9,13 @@
                 <v-spacer></v-spacer>
 
                 <!-- Open Login dialog -->
-                <v-btn 
+                <!-- <v-btn 
                     class="ma=0 pa=0" 
                     small     
                     outlined 
                     @click="openLoginDialog">
                     Already have an account?
-                </v-btn>
+                </v-btn> -->
             </v-card-title>
             
             <v-card-text>
