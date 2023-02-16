@@ -1,13 +1,19 @@
 <template>
-    <nav>
-        <v-toolbar dark color="#181818">
+    <div>
+        <v-app-bar 
+            class="transparent"
+            elevation="0"
+            dark 
+            dense
+            absolute
+            app>
             <!-- Logo + Title -->
             <v-toolbar-title>
-                <v-btn 
+                <v-btn
                     class="mx-5 text-none text-h5 font-weight-bold" 
                     text
-                    prepend-icon="mdi-vuetify"
                     href="/">
+                    <v-icon>mdi-vuetify</v-icon>
                     <span class="gradient-underline">Advertisement Exchanger</span>
                 </v-btn>
             </v-toolbar-title>
@@ -16,33 +22,33 @@
 
             <!-- User is authorized  -->
             <div v-if="isAuthenticated">
+            
+                <!-- TODO: replace menu buttons -->
                 <!-- Profile button -->
-                <router-link style="text-decoration: none;" to="/profile">
+                <!-- <router-link style="text-decoration: none;" to="/profile">
                     <v-btn small text>
                         <v-icon class="pr-1" small>mdi-account</v-icon>profile
                     </v-btn>
-                </router-link>
+                </router-link> -->
 
                 <!-- Orders button -->
-                <router-link style="text-decoration: none;" to="/orders">
+                <!--<router-link style="text-decoration: none;" to="/orders">
                     <v-btn small text>
                         <v-icon class="pr-1" small>mdi-list-box</v-icon>orders
                     </v-btn>
-                </router-link>
+                </router-link> -->
 
+                <!-- TODO: add pays section -->
                 <!-- Pays button -->
-                <router-link style="text-decoration: none;" to="/pays">
+                <!-- <router-link style="text-decoration: none;" to="/pays">
                     <v-btn small text>
                         <v-icon class="pr-1" small>mdi-currency-usd</v-icon>pays</v-btn>
-                </router-link>
-                    
-                <!-- Divider -->
-                <span class="mx-3">|</span>
+                </router-link> -->
 
                 <!-- Logout -->
-                <v-btn small text @click="onLogout">
-                    <v-icon class="pr-1" small>mdi-logout</v-icon>
-                    logout
+                <v-btn text @click="onLogout" class="text-none">
+                    <!-- <v-icon class="pr-1" small>mdi-logout</v-icon> -->
+                    Logout
                 </v-btn>
             </div>
 
@@ -51,9 +57,9 @@
                 <!-- Login Dialog Form -->
                 <v-dialog dark v-model="loginDialog" scrollable>
                     <template v-slot:activator="{ on, props }">
-                        <v-btn small text v-on="on" v-bind="props">
+                        <v-btn text v-on="on" v-bind="props" class="text-none">
                             <!-- <v-icon class="pr-1" small>mdi-login</v-icon> -->
-                            login
+                            Sign in
                         </v-btn>
                     </template>
                     <LoginFormComponent 
@@ -70,9 +76,9 @@
                 <!-- Register Dialog Form -->
                 <v-dialog dark v-model="registerDialog" scrollable>
                     <template v-slot:activator="{ on, props }">
-                        <v-btn small text v-on="on" v-bind="props">
+                        <v-btn text v-on="on" v-bind="props" class="text-none">
                             <!-- <v-icon class="pr-1" small>mdi-login</v-icon> -->
-                            signup
+                            Sign up
                         </v-btn>
                     </template>
                     <RegisterFormComponent 
@@ -83,8 +89,8 @@
                             registerDialog = false" />
                 </v-dialog>
             </div>
-        </v-toolbar>
-    </nav>
+        </v-app-bar>
+    </div>
 </template>
 
 <script>
@@ -99,10 +105,11 @@ export default {
         loginDialog: false,
         registerDialog: false
     }),
+
+    //FIXME: rework auth checking
     computed:{
         ...mapGetters(['isAuthenticated'])
     },
-    // to rework
     methods:{
         ...mapActions(['logout']),
         onLogout(){
@@ -113,6 +120,7 @@ export default {
 </script>
 
 <style>
+
 .v-dialog {
     max-width: 30%;
 }
