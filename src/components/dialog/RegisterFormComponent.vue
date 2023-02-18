@@ -1,3 +1,4 @@
+<!-- TODO: enable v-window transitions  -->
 <template>
     <v-form 
         ref="form"
@@ -5,7 +6,7 @@
         @submit.prevent="submit">
         <v-card>
             <v-card-title>
-                <span class="text-h5">Sign Up</span>
+                <span class="text-h6">Create new account</span>
                 <v-spacer></v-spacer>
 
                 <!-- Open Login dialog -->
@@ -88,11 +89,12 @@
                 </v-container>
             </v-card-text>
 
-            <v-card-actions>
+            <v-card-actions class="pa-7">
                 <v-spacer></v-spacer>
                 <!-- Submit button -->
                 <v-btn 
                     class="success"
+                    block
                     :disabled="!form"
                     :loading="loading"
                     @click="submit">                        

@@ -4,19 +4,11 @@
         v-model="form" 
         @submit.prevent="sign">
         <v-card>
+            <!-- TODO: create header background for card -->
             <v-card-title>
-                <span class="text-h5">Sign In</span>
+                <span class="text-h6">Login to your account</span>
                 <v-spacer></v-spacer>
-
-                <!-- Open Register dialog -->
-                <!-- <v-btn 
-                    class="ma=0 pa=0" 
-                    small
-                    outlined  
-                    @click="openRegisterDialog">
-                    Don't have an account?
-                </v-btn> -->
-            </v-card-title>
+            </v-card-title> 
 
             <v-card-text>
                 <v-container>
@@ -69,11 +61,12 @@
                 </v-container>
             </v-card-text>
 
-            <v-card-actions>
+            <v-card-actions class="pa-7">
                 <v-spacer></v-spacer>
                 <!-- Submit button -->
                 <v-btn 
                     class="success"
+                    block
                     :disabled="!form"
                     :loading="loading"
                     @click="submit">                        

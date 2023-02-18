@@ -2,11 +2,10 @@ import router from "@/config/router";
 
 export default {
     state: {
-        user : {
+        user:{
             id: 1,
-            email: 'aboba@gmail.com',
-            password: 'aboba',
-            role: 'client',
+            email: "user@example.com",
+            password: "password",
         }
         // user: JSON.parse(localStorage.getItem('user')) || null,
     },

@@ -8,24 +8,26 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/HomeView.vue')
+    component: () => import('@/views/HomeView.vue'),
+    meta: {
+      requiresAuth: false,
+    }
   },
   {
     path: '/profile',
     name: 'Profile',
     component: () => import('@/views/ProfileView.vue'),
-    meta:{
+    meta: {
       requiresAuth: true,
-      role: 'agency'
     }
   },
   {
     path: '/orders',
     name: 'Orders',
     component: () => import('@/views/OrdersView.vue'),
-    meta:{
+    meta: {
       requiresAuth: true,
-      role: 'client'
+      role: 'admin'
     }
   }
 ]
@@ -40,16 +42,19 @@ router.beforeEach((to, from, next) => {
   const role = to.meta.role
   const isAuthenticated = store.getters.isAuthenticated
   const userRole = store.getters.getCurrentUserRole
-  
+
   if (requiresAuth) {
     if (!isAuthenticated) {
       next({
         path: '/',
-        query: { redirect: to.fullPath }
+        query: { redirected: true }
       })
     } else if (role !== userRole) {
       // if the user's role is not allowed for the route, redirect to '/'
-      next({ path: '/' })
+      next({
+        path: '/',
+        query: { redirected: true }
+      })
     } else {
       next()
     }
