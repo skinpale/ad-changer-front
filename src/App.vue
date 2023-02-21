@@ -6,7 +6,12 @@
         <v-main>
             <!-- User is authorized -->
             <v-container v-if="isAuthenticated">
-                <router-view />
+                <v-row>
+                    <!-- Menu -->
+                    <menu-component/>
+                    <!-- Content -->
+                    <router-view />
+                </v-row>
             </v-container>
             <!-- User is NOT authorized -->
             <v-container v-else class="scrollable-container">
@@ -29,6 +34,7 @@
 <script>
 import NavbarComponent from './components/navigation/NavbarComponent.vue';
 import JumbotronComponent from './components/JumbotronComponent.vue';
+import MenuComponent from './components/navigation/MenuComponent.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -40,10 +46,11 @@ export default {
     },
     components: {
         NavbarComponent,
-        JumbotronComponent
+        JumbotronComponent,
+        MenuComponent
     },
     computed: {
-        ...mapGetters(['isAuthenticated']),
+        ...mapGetters(['isAuthenticated'])
     },
     watch: {
         $route(to, from) {
@@ -57,8 +64,9 @@ export default {
 </script>
 
 <style>
-html, body {
-  overflow: hidden;
+html,
+body {
+    overflow: hidden;
 }
 
 .scrollable-container {

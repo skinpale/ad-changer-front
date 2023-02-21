@@ -4,9 +4,14 @@
             <v-col cols="12" class="px-0">
                 <v-card class="transparent" elevation="0">
                     <v-app-bar class="transparent" height="50" elevation="0">
+                        <!-- TODO: add menu togglere -->
+                        <v-btn icon>
+                            <v-icon>mdi-menu</v-icon>
+                        </v-btn>
+
                         <!-- Logo + Title -->
                         <div class="logo" @click="goHome">
-                            <span class="gradient-text font-weight-bold text-h5">Advertisement Exchanger</span>
+                            <span class="gradient-text font-weight-bold text-h5">Traffix</span>
                         </div>
                         <v-spacer></v-spacer>
 
@@ -68,7 +73,7 @@ export default {
         props: '',
         darkTheme: null,
         loginDialog: false,
-        registerDialog: false,
+        registerDialog: false
     }),
 
     //FIXME: rework auth checking
