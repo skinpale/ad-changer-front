@@ -10,24 +10,15 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/HomeView.vue'),
     meta: {
-      requiresAuth: false,
-    }
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import('@/views/ProfileView.vue'),
-    meta: {
       requiresAuth: true,
     }
   },
   {
-    path: '/orders',
-    name: 'Orders',
-    component: () => import('@/views/OrdersView.vue'),
+    path: '/campaigns',
+    name: 'Campaigns',
+    component: () => import('@/views/CampaignsView.vue'),
     meta: {
       requiresAuth: true,
-      role: 'admin'
     }
   }
 ]

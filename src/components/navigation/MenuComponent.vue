@@ -31,6 +31,7 @@ export default {
                 { title: 'Profile', to: '/profile', icon: 'mdi-account' },
                 { title: 'Settings', to: '/settings', icon: 'mdi-cog' },
                 { title: 'Help/Support', to: '/help', icon: 'mdi-lifebuoy' },
+                { title: 'Aboba', to: '/aboba', icon: 'mdi-flag' }
             ]
         }
     },

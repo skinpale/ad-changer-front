@@ -1,16 +1,28 @@
 <template>
     <v-app>
         <!-- Navbar -->
-        <navbar-component />
+        <navbar-component/>
         <!-- Content -->
         <v-main>
             <!-- User is authorized -->
             <v-container v-if="isAuthenticated">
                 <v-row>
+                    <!-- Information message -->
+                    <v-col v-if="message" cols="12">
+                        <v-toolbar dense rounded elevation="0" class="error">
+                            <v-card-title>Hello, this is message </v-card-title>
+                            <v-spacer></v-spacer>
+                            <v-btn icon @click="hideMessage">
+                                <v-icon >mdi-close</v-icon>
+                            </v-btn>
+                        </v-toolbar>
+                    </v-col>
                     <!-- Menu -->
-                    <menu-component/>
+                    <menu-component />
                     <!-- Content -->
-                    <router-view />
+                    <v-col :cols="contentCols">
+                        <router-view />
+                    </v-col>
                 </v-row>
             </v-container>
             <!-- User is NOT authorized -->
@@ -35,13 +47,14 @@
 import NavbarComponent from './components/navigation/NavbarComponent.vue';
 import JumbotronComponent from './components/JumbotronComponent.vue';
 import MenuComponent from './components/navigation/MenuComponent.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     name: 'App',
     data() {
         return {
             redirected: false,
+            message: false,
         };
     },
     components: {
@@ -50,7 +63,14 @@ export default {
         MenuComponent
     },
     computed: {
-        ...mapGetters(['isAuthenticated'])
+        ...mapGetters(['isAuthenticated', 'getContentCols']),
+        contentCols() { return this.getContentCols; }
+    },
+    methods: {
+        ...mapActions(['setContentCols']),
+        hideMessage() {
+            this.message = false;
+        }
     },
     watch: {
         $route(to, from) {
@@ -70,6 +90,7 @@ body {
 }
 
 .scrollable-container {
+    min-height: 30rem;
     max-height: 85vh;
     overflow-y: scroll;
 }
