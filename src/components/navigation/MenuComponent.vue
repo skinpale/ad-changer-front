@@ -1,45 +1,46 @@
 <template>
-    <v-col v-if="this.getMenuVisible" :cols="menuCols">
-        <v-card>
-            <v-list>
-                <draggable v-model="menuItems" handle=".handle">
-                    <v-list-item v-for="(item, index) in menuItems" :key="index" :to="item.to">
-                        <v-list-item-action v-if="draggable"
-                            class="handle"><v-icon>mdi-drag-vertical</v-icon></v-list-item-action>
-                        <v-list-item-icon>
-                            <v-icon>{{ item.icon }}</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item>
-                </draggable>
-            </v-list>
-        </v-card>
-    </v-col>
+    <v-card>
+        <v-list>
+            <v-list-item v-for="(item, index) in menuItems" :key="index" :to="item.to">
+                <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+        </v-list>
+    </v-card>
 </template>
 
 <script>
-import draggable from 'vuedraggable';
 import { mapGetters } from 'vuex';
 
 export default {
     data() {
         return {
-            menuItems: [
-                { title: 'Home', to: '/', icon: 'mdi-home' },
-                { title: 'Campaigns', to: '/campaigns', icon: 'mdi-bullhorn' },
-                { title: 'Reports', to: '/reports', icon: 'mdi-file-chart' },
-                { title: 'Profile', to: '/profile', icon: 'mdi-account' },
-                { title: 'Settings', to: '/settings', icon: 'mdi-cog' },
-                { title: 'Help/Support', to: '/help', icon: 'mdi-lifebuoy' },
-                { title: 'Aboba', to: '/aboba', icon: 'mdi-flag' }
-            ]
+            menuItems: null
         }
     },
-    components: { draggable },
     computed: {
-        ...mapGetters(['getMenuCols', 'getDraggable', 'getMenuVisible']),
-        menuCols() { return this.getMenuCols },
-        draggable() { return this.getDraggable }
-    } 
+        ...mapGetters(['getCurrentUserRole'])
+    },
+    created() {
+        if(this.getCurrentUserRole ===  'CLIENT'){
+            this.menuItems = [
+                { title: 'Home', to: '/', icon: 'mdi-home' },
+                { title: 'Products', to: '/products', icon: 'mdi-cube-outline' },
+                { title: 'Orders', to: '/orders', icon: 'mdi-package' },
+                { title: 'Reports', to: '/reports', icon: 'mdi-file-chart' },
+                { title: 'Offers', to: '/offers', icon: 'mdi-tag' },
+                { title: 'Profile', to: '/profile', icon: 'mdi-account' }
+            ]
+        }else{
+            this.menuItems = [
+                { title: 'Orders', to: '/orders', icon: 'mdi-package' },
+                { title: 'Tariffs', to: '/tariffs', icon: 'mdi-cash-multiple' },
+                { title: 'Clients', to: '/clients', icon: 'mdi-account-group' },
+                { title: 'Profile', to: '/profile', icon: 'mdi-account' }
+            ]
+        }
+    }
 }        
 </script>

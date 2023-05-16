@@ -1,0 +1,9 @@
+menuItems: [
+                { title: 'Home', to: '/', icon: 'mdi-home' },
+                { title: 'Campaigns', to: '/campaigns', icon: 'mdi-bullhorn' },
+                { title: 'Reports', to: '/reports', icon: 'mdi-file-chart' },
+                { title: 'Profile', to: '/profile', icon: 'mdi-account' },
+                { title: 'Settings', to: '/settings', icon: 'mdi-cog' },
+                { title: 'Help/Support', to: '/help', icon: 'mdi-lifebuoy' },
+                { title: 'Aboba', to: '/aboba', icon: 'mdi-flag' }
+            ]

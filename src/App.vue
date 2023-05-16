@@ -9,7 +9,7 @@
                 <v-row>
                     <!-- Information message -->
                     <v-col v-if="message" cols="12">
-                        <v-toolbar dense rounded elevation="0" class="error">
+                        <v-toolbar dense rounded elevation="0" class="warning">
                             <v-card-title>Hello, this is message </v-card-title>
                             <v-spacer></v-spacer>
                             <v-btn icon @click="hideMessage">
@@ -18,9 +18,11 @@
                         </v-toolbar>
                     </v-col>
                     <!-- Menu -->
-                    <menu-component />
+                    <v-col cols="3">
+                        <menu-component/>
+                    </v-col>
                     <!-- Content -->
-                    <v-col :cols="contentCols">
+                    <v-col cols="9">
                         <router-view />
                     </v-col>
                 </v-row>
@@ -31,7 +33,7 @@
             </v-container>
             <!-- Unauthorized access error -->
             <!-- FIXME: replace text with {text} -->
-            <v-snackbar text v-model="redirected" :timeout="8000" color="red" right>
+            <v-snackbar text v-model="redirected" :timeout="2000" color="red" right>
                 You have no permissions
                 <template v-slot:action="{ attrs }">
                     <v-btn small color="red" text v-bind="attrs" @click="redirected = false">
@@ -47,14 +49,14 @@
 import NavbarComponent from './components/navigation/NavbarComponent.vue';
 import JumbotronComponent from './components/JumbotronComponent.vue';
 import MenuComponent from './components/navigation/MenuComponent.vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'App',
     data() {
         return {
             redirected: false,
-            message: false,
+            message: true,
         };
     },
     components: {
@@ -63,13 +65,14 @@ export default {
         MenuComponent
     },
     computed: {
-        ...mapGetters(['isAuthenticated', 'getContentCols']),
-        contentCols() { return this.getContentCols; }
+        ...mapGetters(['isAuthenticated'])
     },
     methods: {
-        ...mapActions(['setContentCols']),
         hideMessage() {
             this.message = false;
+        },
+        get(){
+            console.log()
         }
     },
     watch: {

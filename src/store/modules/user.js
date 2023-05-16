@@ -2,21 +2,15 @@ import router from "@/config/router";
 
 export default {
     state: {
-        user:{
-            id: 1,
-            email: "user@example.com",
-            password: "password",
-        }
-        // user: JSON.parse(localStorage.getItem('user')) || null,
+        user: JSON.parse(localStorage.getItem('user')) || null,
     },
     actions: {
         login(context, user) {
             context.commit("login", user)
         },
-        //FIXME: rework logout redirect 
-        logout(context, url){
+        logout(context, url) {
             context.commit("logout")
-            if(url !== '/') router.push('/')
+            if (url !== '/') router.push('/')
         }
     },
     mutations: {
@@ -30,7 +24,7 @@ export default {
         },
     },
     getters: {
-        user(state){
+        user(state) {
             return state.user
         },
         isAuthenticated(state) {
@@ -38,6 +32,6 @@ export default {
         },
         getCurrentUserRole(state) {
             return state.user ? state.user.role : null
-          }
+        }
     },
 }

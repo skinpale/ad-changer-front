@@ -10,15 +10,7 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/HomeView.vue'),
     meta: {
-      requiresAuth: true,
-    }
-  },
-  {
-    path: '/campaigns',
-    name: 'Campaigns',
-    component: () => import('@/views/CampaignsView.vue'),
-    meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     }
   }
 ]
@@ -36,14 +28,17 @@ router.beforeEach((to, from, next) => {
 
   if (requiresAuth) {
     if (!isAuthenticated) {
-      next({
-        path: '/',
-        query: { redirected: true }
-      })
+      // Redirect to '/' only if the current route is not already the home route
+      if (to.path !== '/') {
+        next({
+          path: '/',
+          query: { redirected: true }
+        })
+      }
     } else if (role !== userRole) {
       // if the user's role is not allowed for the route, redirect to '/'
       next({
-        path: '/',
+        path: from,
         query: { redirected: true }
       })
     } else {
