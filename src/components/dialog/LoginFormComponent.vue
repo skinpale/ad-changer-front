@@ -85,7 +85,7 @@ export default {
         },
         clearError() {
             this.emailErrors = [],
-                this.passwordErrors = []
+            this.passwordErrors = []
         },
         async submit() {
             await axios({
@@ -96,19 +96,19 @@ export default {
                     password: this.password
                 }
             })
-                .then(response => {
-                    this.login(response.data)
-                    this.closeDialog()
-                })
-                .catch(error => {
-                    if (error.response.status === 401) {
-                        if (error.response.data === "User not found") {
-                            this.emailErrors.push("This email is not registered");
-                        } else if (error.response.data === "Incorrect password") {
-                            this.passwordErrors.push("Incorrect password");
-                        }
+            .then(response => {
+                this.login(response.data)
+                this.closeDialog()
+            })
+            .catch(error => {
+                if (error.response.status === 401) {
+                    if (error.response.data === "User not found") {
+                        this.emailErrors.push("This email is not registered");
+                    } else if (error.response.data === "Incorrect password") {
+                        this.passwordErrors.push("Incorrect password");
                     }
-                });
+                }
+            });
         }
 
     },

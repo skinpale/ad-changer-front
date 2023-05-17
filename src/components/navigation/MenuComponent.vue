@@ -21,24 +21,25 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getCurrentUserRole'])
+        ...mapGetters(['getCurrentUserRole', 'getStatus']),
     },
     created() {
         if(this.getCurrentUserRole ===  'CLIENT'){
             this.menuItems = [
-                { title: 'Home', to: '/', icon: 'mdi-home' },
-                { title: 'Products', to: '/products', icon: 'mdi-cube-outline' },
-                { title: 'Orders', to: '/orders', icon: 'mdi-package' },
-                { title: 'Reports', to: '/reports', icon: 'mdi-file-chart' },
-                { title: 'Offers', to: '/offers', icon: 'mdi-tag' },
-                { title: 'Profile', to: '/profile', icon: 'mdi-account' }
+                { title: 'Home', to: '/', icon: 'mdi-home', disabled: true },
+                { title: 'Profile', to: '/profile', icon: 'mdi-account' },
+                { title: 'Products', to: '/products', icon: 'mdi-cube-outline', disabled: status === 'Pending' },
+                { title: 'Orders', to: '/orders', icon: 'mdi-package', disabled: status === 'Pending' },
+                { title: 'Reports', to: '/reports', icon: 'mdi-file-chart', disabled: status === 'Pending' },
+                { title: 'Offers', to: '/offers', icon: 'mdi-tag', disabled: status === 'Pending' }
             ]
         }else{
             this.menuItems = [
-                { title: 'Orders', to: '/orders', icon: 'mdi-package' },
-                { title: 'Tariffs', to: '/tariffs', icon: 'mdi-cash-multiple' },
-                { title: 'Clients', to: '/clients', icon: 'mdi-account-group' },
-                { title: 'Profile', to: '/profile', icon: 'mdi-account' }
+                { title: 'Home', to: '/', icon: 'mdi-home' },
+                { title: 'Profile', to: '/profile', icon: 'mdi-account' },
+                { title: 'Orders', to: '/orders', icon: 'mdi-package', disabled: status === 'Pending' },
+                { title: 'Tariffs', to: '/tariffs', icon: 'mdi-cash-multiple', disabled: status === 'Pending' },
+                { title: 'Clients', to: '/clients', icon: 'mdi-account-group', disabled: status === 'Pending' }
             ]
         }
     }

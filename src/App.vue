@@ -10,7 +10,7 @@
                     <!-- Information message -->
                     <v-col v-if="message" cols="12">
                         <v-toolbar dense rounded elevation="0" class="warning">
-                            <v-card-title>Hello, this is message </v-card-title>
+                            <v-card-title> account information</v-card-title>
                             <v-spacer></v-spacer>
                             <v-btn icon @click="hideMessage">
                                 <v-icon >mdi-close</v-icon>
@@ -31,7 +31,7 @@
             <v-container v-else class="scrollable-container">
                 <jumbotron-component />
             </v-container>
-            <!-- Unauthorized access error -->
+            <!-- Snackbar message -->
             <!-- FIXME: replace text with {text} -->
             <v-snackbar text v-model="redirected" :timeout="2000" color="red" right>
                 You have no permissions
@@ -56,7 +56,7 @@ export default {
     data() {
         return {
             redirected: false,
-            message: true,
+            message: false,
         };
     },
     components: {
@@ -65,7 +65,7 @@ export default {
         MenuComponent
     },
     computed: {
-        ...mapGetters(['isAuthenticated'])
+        ...mapGetters(['isAuthenticated', 'getClientId', 'getAgencyId'])
     },
     methods: {
         hideMessage() {

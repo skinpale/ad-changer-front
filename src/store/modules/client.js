@@ -1,8 +1,9 @@
-import router from "@/config/router";
-
 export default {
     state: {
-        user: JSON.parse(localStorage.getItem('user')) || null,
+        client: {
+            id: 1
+        }
+        //user: JSON.parse(localStorage.getItem('user')) || null,
     },
     actions: {
         login(context, user) {
@@ -32,12 +33,6 @@ export default {
         },
         getCurrentUserRole(state) {
             return state.user ? state.user.role : null
-        },
-        getClientId(state) {
-            return state.user ? state.user.client_id : null
-        },
-        getAgencyId(state) {
-            return state.user ? state.user.agency_id : null
         }
     }
 }
