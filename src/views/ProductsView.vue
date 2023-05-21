@@ -93,6 +93,15 @@
                 </v-btn>
             </template>
         </v-snackbar>
+
+        <v-snackbar text v-model="orderExisted" :timeout="2000" color="red" right>
+            Delete order first!
+            <template v-slot:action="{ attrs }">
+                <v-btn small color="red" text v-bind="attrs" @click="orderExisted = false">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </template>
+        </v-snackbar>
     </v-container>
 </template>
 
@@ -109,7 +118,8 @@ export default {
             title: '',
             description: '',
             created: false,
-            deleted: false
+            deleted: false,
+            orderExisted: false
         };
     },
     methods: {
@@ -172,7 +182,9 @@ export default {
                     this.deleted = true
                 })
                 .catch(error => {
-                    console.error('Error fetching products:', error);
+                    if (error.response.status === 400) {
+                        this.orderExisted = true
+                    }
                 });
         }
     },

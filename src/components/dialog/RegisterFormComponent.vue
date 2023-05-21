@@ -54,13 +54,13 @@
 
                     <!-- Choose Role -->
                     <v-radio-group row :rules="[rules.required]" v-model="role">
-                        <v-radio label="I am client" value="CLIENT" class="pl-12"/>
-                        <v-spacer/>
-                        <v-radio label="I am agency" value="AGENCY" class="pr-12"/>
+                        <v-radio label="I am client" value="CLIENT" class="pl-12" />
+                        <v-spacer />
+                        <v-radio label="I am agency" value="AGENCY" class="pr-12" />
                     </v-radio-group>
 
                     <v-divider></v-divider>
-                    
+
                     <!-- License Agreement -->
                     <v-checkbox label="I agree to site terms and conditions*" color="secondary" v-model="terms"
                         :readonly="loading" :rules="[value => value == 1 || 'Please accept company rules']">
