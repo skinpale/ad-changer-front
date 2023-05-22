@@ -45,6 +45,29 @@
         <v-row class="ma-0">
             <v-col v-for="product in products" :key="product.id" cols="4">
                 <v-card class="pa-0">
+                    <v-overlay :z-index="1" :value="overlay">
+                        <v-card>
+                            <v-card-title>
+                                Do you want to delete this order?
+                            </v-card-title>
+                            <v-card-text>
+                                <v-row>
+                                    <v-col>
+                                        <v-btn class="white--text" large @click="overlay = false" elevation="0">
+                                            cancel
+                                        </v-btn>
+                                    </v-col>
+                                    <v-spacer />
+                                    <v-col>
+                                        <v-btn class="white--text" color="red" large @click="deleteProduct(currentProductId)"
+                                            elevation="0">
+                                            delete
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+                            </v-card-text>
+                        </v-card>
+                    </v-overlay>
                     <v-card-title>
                         <h4>
                             {{ product.title }}
@@ -57,7 +80,7 @@
                     <v-divider></v-divider>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn class="ma-2" elevation="0" small color="red" @click="deleteProduct(product.id)">
+                        <v-btn class="ma-2" elevation="0" small color="red" @click="showConfirm(product.id)">
                             delete
                             <v-icon>
                                 mdi-delete
@@ -119,7 +142,9 @@ export default {
             description: '',
             created: false,
             deleted: false,
-            orderExisted: false
+            orderExisted: false,
+            overlay: false,
+            currentProductId: null
         };
     },
     methods: {
@@ -168,7 +193,13 @@ export default {
                     console.error('Error fetching products:', error);
                 });
         },
+        showConfirm(id) {
+            this.currentProductId = id;
+            this.overlay = true
+        },
         deleteProduct(id) {
+            this.overlay = false;
+
             axios({
                 method: 'delete',
                 url: 'product',

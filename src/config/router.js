@@ -10,14 +10,29 @@ const routes = [
     component: () => import('@/views/HomeView.vue')
   },
   {
-    path: '/products',
+    path: '/client/products',
     name: 'Products',
-    component: () => import('@/views/ProductsView.vue')
+    component: () => import('@/views/client/ProductsView.vue')
   },
   {
-    path: '/orders',
+    path: '/client/orders',
+    name: 'ClientOrders',
+    component: () => import('@/views/client/OrdersView.vue')
+  },
+  {
+    path: '/client/profile',
+    name: 'ClientProfile',
+    component: () => import('@/views/client/ProfileView.vue')
+  },
+  {
+    path: '/agency/profile',
+    name: 'AgencyProfile',
+    component: () => import('@/views/agency/ProfileView.vue')
+  },
+  {
+    path: '/agency/orders',
     name: 'Orders',
-    component: () => import('@/views/OrdersView.vue')
+    component: () => import('@/views/agency/OrdersView.vue')
   }
 ]
 

@@ -5,33 +5,22 @@
                 <v-card class="transparent" elevation="0">
                     <v-app-bar class="transparent" height="50" elevation="0">
                         <!-- TODO: add menu togglere -->
-                        <!-- <v-btn icon>
-                                        <v-icon>mdi-menu</v-icon>
-                                    </v-btn> -->
-
                         <!-- Logo + Title -->
                         <div class="logo" @click="goHome">
-                            <!-- <v-icon color="#e24bdd" size="30">mdi-alpha-t-box</v-icon>
-                            <v-icon color="#e24bdd" size="30">mdi-language-r</v-icon>
-                            <v-icon color="#e24bdd" size="30">mdi-alpha-a-box</v-icon>
-                            <v-icon size="30">mdi-alpha-f-box-outline </v-icon>
-                            <v-icon size="30">mdi-alpha-f-box-outline </v-icon>
-                            <v-icon color="#e24bdd" size="30">mdi-alpha-i-box</v-icon>
-                            <v-icon color="#e24bdd " size="30">mdi-alpha-x-box</v-icon> -->
-
-                            <v-icon color="#e24bdd" size="35" style="margin-top: -15px; margin-right: -8px;">mdi-terraform</v-icon>
+                            <v-icon color="#e24bdd" size="35"
+                                style="margin-top: -15px; margin-right: -8px;">mdi-terraform</v-icon>
                             <span class="gradient-text font-weight-bold text-h5">
                                 adverts
                             </span>
-                            
                             <div class="gradient-text caption pl-2" style="margin-top: -7%;">
                                 Exchange Your Ads.
                             </div>
                         </div>
                         <v-spacer></v-spacer>
-                        
-                        <!-- Search bar
-                        <v-text-field outlined dense hide-details label="Search"></v-text-field>
+
+
+                        <!-- Search bar -->
+                        <!-- <v-text-field outlined dense hide-details label="Search"></v-text-field>
                         <v-spacer></v-spacer> -->
 
                         <!-- Theme toggler -->

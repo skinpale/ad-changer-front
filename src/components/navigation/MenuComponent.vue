@@ -26,20 +26,20 @@ export default {
     created() {
         if(this.getCurrentUserRole ===  'CLIENT'){
             this.menuItems = [
-                { title: 'Home', to: '/', icon: 'mdi-home', disabled: true },
-                { title: 'Profile', to: '/profile', icon: 'mdi-account' },
-                { title: 'Products', to: '/products', icon: 'mdi-cube-outline', disabled: status === 'Pending' },
-                { title: 'Orders', to: '/orders', icon: 'mdi-package', disabled: status === 'Pending' },
-                { title: 'Reports', to: '/reports', icon: 'mdi-file-chart', disabled: status === 'Pending' },
-                { title: 'Offers', to: '/offers', icon: 'mdi-tag', disabled: status === 'Pending' }
+                { title: 'Home', to: '/', icon: 'mdi-home' },
+                { title: 'Products', to: '/client/products', icon: 'mdi-cube-outline' },
+                { title: 'Orders', to: '/client/orders', icon: 'mdi-package' },
+                { title: 'Reports', to: '/client/reports', icon: 'mdi-file-chart' },
+                { title: 'Offers', to: '/client/offers', icon: 'mdi-tag' },
+                { title: 'Profile', to: '/client/profile', icon: 'mdi-account' }
             ]
         }else{
             this.menuItems = [
                 { title: 'Home', to: '/', icon: 'mdi-home' },
-                { title: 'Profile', to: '/profile', icon: 'mdi-account' },
-                { title: 'Orders', to: '/orders', icon: 'mdi-package', disabled: status === 'Pending' },
-                { title: 'Tariffs', to: '/tariffs', icon: 'mdi-cash-multiple', disabled: status === 'Pending' },
-                { title: 'Clients', to: '/clients', icon: 'mdi-account-group', disabled: status === 'Pending' }
+                { title: 'Tariffs', to: '/agency/tariffs', icon: 'mdi-cash-multiple' },
+                { title: 'Orders', to: '/agency/orders', icon: 'mdi-package' },
+                { title: 'Clients', to: '/agency/clients', icon: 'mdi-account-group' },
+                { title: 'Profile', to: '/agency/profile', icon: 'mdi-account' },
             ]
         }
     }

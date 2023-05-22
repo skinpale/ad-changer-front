@@ -101,6 +101,13 @@
         </v-container>
 
         <v-row class="ma-0">
+            <v-col v-if="orderCount === 0 && !this.showform">
+                <v-card>
+                    <v-card-text>
+                        No orders
+                    </v-card-text>
+                </v-card>
+            </v-col>
             <v-col v-for="order, index in orders" :key="order.id" cols="6">
                 <v-card class="pa-0">
                     <v-overlay :z-index="1" :value="overlay">
@@ -137,7 +144,7 @@
                             <v-col class="pa-0">
                                 <h6 class="ml-2">#{{ index + 1 }}</h6>
                                 <h4 class="ml-3">
-                                    Order №{{ order.order.id }}
+                                    Order №{{ order.order.id }} - {{ order.product.title }}
                                 </h4>
                             </v-col>
                         </v-row>
@@ -337,7 +344,7 @@ export default {
                     console.log(response)
                     this.getOrders()
                     this.created = true
-                    this.showform = false                    
+                    this.showform = false
                 })
                 .catch(error => {
                     if (error.response.status === 400) {
@@ -359,6 +366,9 @@ export default {
         dateRangeText() {
             return this.dates.join(' ~ ')
         },
+        orderCount() {
+            return this.orders.length
+        }
     },
     created() {
         this.getOrders();

@@ -5,8 +5,8 @@
         <!-- Content -->
         <v-main>
             <!-- User is authorized -->
-            <v-container v-if="isAuthenticated">
-                <v-row>
+            <v-container v-if="isAuthenticated" >
+                <v-row class="pa-0 ma-0">
                     <!-- Information message -->
                     <v-col v-if="message" cols="12">
                         <v-toolbar dense rounded elevation="0" class="warning">
@@ -28,7 +28,7 @@
                 </v-row>
             </v-container>
             <!-- User is NOT authorized -->
-            <v-container v-else class="scrollable-container">
+            <v-container v-else class="scrollable-container" >
                 <jumbotron-component />
             </v-container>
             <!-- Snackbar message -->
