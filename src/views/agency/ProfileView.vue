@@ -56,6 +56,16 @@
                 <v-col cols="12">
                     <v-card>
                         <v-card-title>
+                            Description:
+                        </v-card-title>
+                        <v-card-text>
+                            {{ description }}
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+                <v-col cols="8">
+                    <v-card>
+                        <v-card-title>
                             Address:
                         </v-card-title>
                         <v-card-text>
@@ -63,26 +73,35 @@
                         </v-card-text>
                     </v-card>
                 </v-col>
+                <v-col cols="4">
+                    <v-card>
+                        <v-card-title>
+                            Account created at:
+                        </v-card-title>
+                        <v-card-text>
+                            {{ createdAt }}
+                        </v-card-text>
+                    </v-card>
+                </v-col>
             </v-row>
-            <h3 class="ml-5 mt-7">
-                Statistics:
-            </h3>
-            <v-divider class="my-4"></v-divider>
         </v-container>
     </v-container>
 </template>
 <script>
 import axios from '@/config/axios';
 import { mapGetters } from 'vuex';
+import moment from 'moment';
 
 export default {
     data() {
         return {
             id: null,
             name: '',
+            description: '',
             phone: '',
             address: '',
-            isCertified: false
+            isCertified: false,
+            createdAt: null
         }
     },
     methods: {
@@ -93,12 +112,17 @@ export default {
                 url: `/agencies/${this.getAgencyId()}`
             })
                 .then(response => {
-                    this.id = response.data.id
-                    this.name = response.data.name
-                    this.phone = response.data.phone
-                    this.address = response.data.address
-                    this.isCertified = response.data.isCertified
+                    this.id = response.data.agency.id
+                    this.name = response.data.agency.name
+                    this.description = response.data.agency.description
+                    this.phone = response.data.agency.phone
+                    this.address = response.data.agency.address
+                    this.isCertified = response.data.agency.isCertified
+                    this.createdAt = this.transformTimestamp(response.data.createdAt)
                 })
+        },
+        transformTimestamp(timestamp) {
+            return moment(timestamp).format('DD/MM/YYYY');
         }
     },
     created() {

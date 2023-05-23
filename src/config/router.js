@@ -33,6 +33,21 @@ const routes = [
     path: '/agency/orders',
     name: 'Orders',
     component: () => import('@/views/agency/OrdersView.vue')
+  },
+  {
+    path: '/agency/tariffs',
+    name: 'AgencyTariffs',
+    component: () => import('@/views/agency/TariffView.vue')
+  },
+  {
+    path: '/client/offers',
+    name: 'ClientOffers',
+    component: () => import('@/views/client/OffersView.vue')
+  },
+  {
+    path: '/agency/clients',
+    name: 'AgencyClients',
+    component: () => import('@/views/agency/ClientsView.vue')
   }
 ]
 

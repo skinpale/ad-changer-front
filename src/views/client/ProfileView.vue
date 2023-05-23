@@ -47,10 +47,6 @@
                     </v-card>
                 </v-col>
             </v-row>
-            <h3 class="ml-5 mt-7">
-                Statistics:
-            </h3>
-            <v-divider class="my-4"></v-divider>
         </v-container>
     </v-container>
 </template>

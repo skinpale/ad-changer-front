@@ -12,6 +12,7 @@
                             <span class="gradient-text font-weight-bold text-h5">
                                 adverts
                             </span>
+                            
                             <div class="gradient-text caption pl-2" style="margin-top: -7%;">
                                 Exchange Your Ads.
                             </div>

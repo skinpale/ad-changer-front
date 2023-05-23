@@ -29,7 +29,6 @@ export default {
                 { title: 'Home', to: '/', icon: 'mdi-home' },
                 { title: 'Products', to: '/client/products', icon: 'mdi-cube-outline' },
                 { title: 'Orders', to: '/client/orders', icon: 'mdi-package' },
-                { title: 'Reports', to: '/client/reports', icon: 'mdi-file-chart' },
                 { title: 'Offers', to: '/client/offers', icon: 'mdi-tag' },
                 { title: 'Profile', to: '/client/profile', icon: 'mdi-account' }
             ]
