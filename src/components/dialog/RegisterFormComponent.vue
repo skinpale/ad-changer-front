@@ -59,6 +59,22 @@
                         <v-radio label="I am agency" value="AGENCY" class="pr-12" />
                     </v-radio-group>
 
+                    <v-divider class="mb-5"></v-divider>
+
+                    
+                    <v-container v-if="role==='CLIENT'">
+                        <v-text-field v-model="client_first_name" outlined dense label="first name"></v-text-field>
+                        <v-text-field v-model="client_last_name" label="last name" outlined dense></v-text-field>
+                        <v-text-field v-model="client_phone" label="phone" outlined dense></v-text-field>
+                    </v-container>
+
+                    <v-container v-if="role==='AGENCY'">
+                        <v-text-field v-model="agency_name"  label="agency name" outlined dense></v-text-field>
+                        <v-textarea v-model="agency_description"  label="description" outlined dense></v-textarea>
+                        <v-text-field v-model="agency_phone"  label="phone" outlined dense></v-text-field>
+                        <v-text-field v-model="agency_address"  label="address" outlined dense></v-text-field>
+                    </v-container>
+
                     <v-divider></v-divider>
 
                     <!-- License Agreement -->
@@ -89,6 +105,15 @@ import { mapMutations } from 'vuex';
 
 export default {
     data: () => ({
+        client_first_name: '',
+        client_last_name: '',
+        client_phone: '',
+
+        agency_name: '',
+        agency_description:'',
+        agency_phone: '',
+        agency_address: '',
+
         dialog: false,
         show: false,
         terms: false,
@@ -120,8 +145,8 @@ export default {
         clearError() {
             this.emailErrors = []
         },
-        async submit() {
-            await axios({
+        submit() {
+            axios({
                 method: 'post',
                 url: 'user/register',
                 data: {

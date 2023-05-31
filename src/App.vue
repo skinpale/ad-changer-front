@@ -32,7 +32,6 @@
                 <jumbotron-component />
             </v-container>
             <!-- Snackbar message -->
-            <!-- FIXME: replace text with {text} -->
             <v-snackbar text v-model="redirected" :timeout="2000" color="red" right>
                 You have no permissions
                 <template v-slot:action="{ attrs }">

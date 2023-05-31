@@ -233,9 +233,9 @@
                     <v-card-text clas="pa-0 ma-0">
                         <v-sparkline :fill="false" :gradient="gradient" :line-width="5" :padding="10" :smooth="4"
                             :value="value" auto-draw stroke-linecap="round" class="pa-3">
-                            <!-- <template v-slot:label="item">
+                            <template v-slot:label="item">
                                 {{ item.value }}p.
-                            </template> -->
+                            </template>
                         </v-sparkline>
                     </v-card-text>
                     <v-divider></v-divider>
@@ -251,6 +251,11 @@
                             <v-col cols="12" sm="6">
                                 <v-text-field dense v-model="dateRangeText" label="Date range" prepend-icon="mdi-calendar"
                                     readonly></v-text-field>
+                                    Reports amount: 3<br>
+                                    Total cost: 1 198$<br>
+                                    Month 1: 1 198$<br>
+                                    Deposit: 20 000$<br>
+                                    Return: 18 802$<br>
                             </v-col>
                         </v-row>
                     </v-card-text>

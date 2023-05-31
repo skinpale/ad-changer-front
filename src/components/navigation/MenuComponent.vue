@@ -31,6 +31,7 @@ export default {
                 { title: 'Orders', to: '/client/orders', icon: 'mdi-package' },
                 { title: 'Offers', to: '/client/offers', icon: 'mdi-tag' },
                 { title: 'Profile', to: '/client/profile', icon: 'mdi-account' }
+                // { title: 'Agencies', to: '/admin/agencies', icon: 'mdi-bag-checked' },
             ]
         }else{
             this.menuItems = [

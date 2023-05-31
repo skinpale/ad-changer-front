@@ -173,10 +173,10 @@
                         </v-card-text>
                     </v-card>
                 </v-col>
-                <v-col v-for="offer, index in activeOrders" :key="offer.id" cols="12">
+                <v-col v-for="order, index in activeOrders" :key="order.id" cols="12">
                     <v-card class="pa-0">
                         <v-card-title class="ml-2">
-                            #{{ index + 1 }} | Offer for order №{{ offer.order.id }}
+                            #{{ index + 1 }} | Offer for order №{{ order.order.id }}
                         </v-card-title>
                         <v-divider></v-divider>
                         <v-card-text>
@@ -192,7 +192,7 @@
                                             Auditory:
                                         </v-card-title>
                                         <v-card-text>
-                                            {{ offer.order.auditory }}
+                                            {{ order.order.auditory }}
                                             <v-icon x-small>mdi-account</v-icon>
                                         </v-card-text>
                                     </v-card>
@@ -203,7 +203,7 @@
                                             Description:
                                         </v-card-title>
                                         <v-card-text>
-                                            {{ offer.order.description }}
+                                            {{ order.order.description }}
                                         </v-card-text>
                                     </v-card>
                                 </v-col>
@@ -219,13 +219,13 @@
                                         <v-card-title>
                                             Payment frequency:
                                         </v-card-title>
-                                        <v-card-text v-if="offer.frequency.name === 'per_month'">
+                                        <v-card-text v-if="order.frequency.name === 'per_month'">
                                             Each month
                                         </v-card-text>
-                                        <v-card-text v-if="offer.frequency.name === 'per_week'">
+                                        <v-card-text v-if="order.frequency.name === 'per_week'">
                                             Each week
                                         </v-card-text>
-                                        <v-card-text v-if="offer.frequency.name === 'per_quarter'">
+                                        <v-card-text v-if="order.frequency.name === 'per_quarter'">
                                             Each quarter
                                         </v-card-text>
                                     </v-card>
@@ -236,7 +236,7 @@
                                             Advertisement payment model:
                                         </v-card-title>
                                         <v-card-text>
-                                            {{ offer.tactics.name }}
+                                            {{ order.tactics.name }}
                                         </v-card-text>
                                     </v-card>
                                 </v-col>
@@ -253,24 +253,24 @@
                                             Total cost:
                                         </v-card-title>
                                         <v-card-text>
-                                            {{ offer.payPlanDTO.total }}
+                                            {{ order.payPlanDTO.total }}
                                             <v-icon x-small>mdi-currency-usd</v-icon>
                                         </v-card-text>
                                     </v-card>
                                 </v-col>
                                 <v-col cols="4">
                                     <v-card outlined elevation="0">
-                                        <v-card-title v-if="offer.frequency.name === 'per_month'">
+                                        <v-card-title v-if="order.frequency.name === 'per_month'">
                                             Amount of months:
                                         </v-card-title>
-                                        <v-card-title v-if="offer.frequency.name === 'per_week'">
+                                        <v-card-title v-if="order.frequency.name === 'per_week'">
                                             Amount of weeks:
                                         </v-card-title>
-                                        <v-card-title v-if="offer.frequency.name === 'per_quarter'">
+                                        <v-card-title v-if="order.frequency.name === 'per_quarter'">
                                             Amount of quarters:
                                         </v-card-title>
                                         <v-card-text>
-                                            {{ offer.payPlanDTO.amount }}
+                                            {{ order.payPlanDTO.amount }}
                                         </v-card-text>
                                     </v-card>
                                 </v-col>
@@ -280,7 +280,7 @@
                                             Cost per each month:
                                         </v-card-title>
                                         <v-card-text>
-                                            {{ offer.payPlanDTO.per }}
+                                            {{ order.payPlanDTO.per }}
                                             <v-icon x-small>mdi-currency-usd</v-icon>
                                         </v-card-text>
                                     </v-card>
@@ -288,7 +288,7 @@
                             </v-row>
                         </v-card-text>
                         <v-card-actions>
-                            <v-btn block class="ma-2" elevation="0" color="success" @click="openReports(offer)">
+                            <v-btn block class="ma-2" elevation="0" color="success" @click="openReports(order)">
                                 to reports
                                 <v-icon small>mdi-file-chart</v-icon>
                             </v-btn>
@@ -361,7 +361,7 @@ export default {
             showsentoffers: false,
             showactiveoffers: true,
 
-            openedReports: true,
+            openedReports: false,
 
             currentOrderId: null,
             currentContractId: null,
